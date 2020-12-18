@@ -33,7 +33,7 @@ const build = () => {
 const run = (served: child_process.ChildProcessWithoutNullStreams) => {
   const command = process.platform.startsWith('win') ?
   `npx testcafe ${process.env.BROWSER} e2e/**/*.spec.{js,ts} --hostname localhost` :
-  `npx testcafe ${process.env.BROWSER} e2e/**/*.spec.{js,ts} --hostname localhost`
+  `./run-on-macos.sh`
 
   const e2e = spawn(command)
   e2e.stdout.on('data', (data) => {
