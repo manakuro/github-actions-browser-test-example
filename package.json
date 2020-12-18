@@ -23,7 +23,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "test:e2e": "node --loader ts-node/esm.mjs e2e/runner.ts",
-    "serve": "serve -s build"
+    "serve": "serve -s build",
+    "test:macos": "./e2e/run-on-macos.sh"
   },
   "eslintConfig": {
     "extends": [
