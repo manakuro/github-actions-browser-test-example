@@ -24,7 +24,8 @@
     "eject": "react-scripts eject",
     "test:e2e": "node --loader ts-node/esm.mjs e2e/runner.ts",
     "serve": "serve -s build",
-    "test:macos": "./e2e/run-on-macos.sh"
+    "test:macos": "./e2e/run-on-macos.sh",
+    "test:windows": "npx testcafe $BROWSER e2e/**/*.spec.{js,ts} --hostname localhost"
   },
   "eslintConfig": {
     "extends": [

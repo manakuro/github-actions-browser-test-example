@@ -32,8 +32,8 @@ const build = () => {
 
 const run = (served: child_process.ChildProcessWithoutNullStreams) => {
   const command = process.platform.startsWith('win') ?
-  `npx testcafe ${process.env.BROWSER} e2e/**/*.spec.{js,ts} --hostname localhost` :
-  `yarn test:macos`
+  `yarn test:windows` :
+  `yarn test:mac`
 
   const e2e = spawn(command)
   e2e.stdout.on('data', (data) => {
@@ -47,7 +47,6 @@ const run = (served: child_process.ChildProcessWithoutNullStreams) => {
     process.exit(code)
   })
 }
-
 
 build()
 const served = serve()
