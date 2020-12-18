@@ -32,7 +32,7 @@ const build = () => {
 
 const run = (served: child_process.ChildProcessWithoutNullStreams) => {
   const command = process.platform.startsWith('win') ?
-  `yarn test:windows` :
+  `yarn test:windows --browser=${process.env.BROWSER}` :
   `yarn test:macos`
 
   const e2e = spawn(command)
