@@ -14,7 +14,7 @@ jobs:
         with:
           path: node_modules
           key: e2e-yarn-${{ hashFiles('**\yarn.lock') }}
-          restore-keys: e2e-yarn
+          restore-keys: e2e-yarn-
       - run: yarn
   Windows:
     needs: [setup]
@@ -32,7 +32,7 @@ jobs:
         with:
           path: node_modules
           key: e2e-yarn-${{ hashFiles('**\yarn.lock') }}
-          restore-keys: e2e-yarn
+          restore-keys: e2e-yarn-
       - run: yarn
       - name: Run test
         run: yarn test:e2e
