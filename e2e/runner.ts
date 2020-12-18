@@ -10,30 +10,48 @@ const spawn = (command: string) => {
   }
 }
 
-const build = child_process.execSync(`yarn build`)
-consola.success(`${build}`)
+const serve = () => {
+  const served = spawn('yarn serve')
+  served.stdout.on('data', (data) => {
+    consola.log(`${data}`)
+  })
+  served.stderr.on('data', (data) => {
+    consola.error(`${data}`)
+  })
+  served.on('close', (code) => {
+    consola.info(`${code}`)
+  })
 
-const start = spawn('yarn serve')
-start.stdout.on('data', (data) => {
-  consola.log(`${data}`)
-})
-start.stderr.on('data', (data) => {
-  consola.error(`${data}`)
-})
-start.on('close', (code) => {
-  consola.info(`${code}`)
-})
+  return served
+}
 
-const e2e = spawn(
+const build = () => {
+  const result = child_process.execSync(`yarn build`)
+  consola.success(`${result}`)
+}
+
+const run = (served: child_process.ChildProcessWithoutNullStreams) => {
+  const command = process.platform.startsWith('win') ?
+  `npx testcafe ${process.env.BROWSER} e2e/**/*.spec.{js,ts} --hostname localhost` :
   `npx testcafe ${process.env.BROWSER} e2e/**/*.spec.{js,ts} --hostname localhost`
-)
-e2e.stdout.on('data', (data) => {
-  consola.log(`${data}`)
-})
-e2e.stderr.on('data', (data) => {
-  consola.error(`${data}`)
-})
-e2e.on('close', (code) => {
-  start.kill()
-  process.exit(code)
-})
+
+  const e2e = spawn(command)
+  e2e.stdout.on('data', (data) => {
+    consola.log(`${data}`)
+  })
+  e2e.stderr.on('data', (data) => {
+    consola.error(`${data}`)
+  })
+  e2e.on('close', (code) => {
+    served.kill()
+    process.exit(code)
+  })
+}
+
+
+build()
+const served = serve()
+run(served)
+
+
+
