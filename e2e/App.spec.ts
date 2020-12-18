@@ -1,8 +1,8 @@
-import { Selector, getHref } from 'testcafe'
+import { Selector } from 'testcafe'
 
 const isWindows = () => process.platform.startsWith('win')
 
-const resizeWindow = async (t) => {
+const resizeWindow = async (t: TestController) => {
   if (isWindows()) await t.resizeWindow(5000, 2000)
 }
 
