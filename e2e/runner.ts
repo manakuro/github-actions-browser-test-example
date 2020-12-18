@@ -33,7 +33,7 @@ const build = () => {
 const run = (served: child_process.ChildProcessWithoutNullStreams) => {
   const command = process.platform.startsWith('win') ?
   `yarn test:windows` :
-  `yarn test:mac`
+  `yarn test:macos`
 
   const e2e = spawn(command)
   e2e.stdout.on('data', (data) => {
