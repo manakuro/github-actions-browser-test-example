@@ -21,29 +21,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        browser: [ie]
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 14
-      - name: Restore node_modules cache
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: e2e-yarn-${{ hashFiles('**\yarn.lock') }}
-          restore-keys: e2e-yarn
-      - run: yarn
-      - name: Run test
-        run: yarn test:e2e
-        env:
-          BROWSER: ${{ matrix.browser }}
-  Mac:
-    needs: [setup]
-    runs-on: macos-latest
-    strategy:
-      matrix:
-        browser: [safari,chrome,firefox]
+        browser: [ie,chrome,firefox]
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
