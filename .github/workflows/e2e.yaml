@@ -18,7 +18,7 @@ jobs:
       - run: yarn
   Windows:
     needs: [setup]
-    runs-on: windows-latests
+    runs-on: windows-latest
     strategy:
       matrix:
         browser: [ie,chrome,firefox]
