@@ -24,8 +24,8 @@
     "eject": "react-scripts eject",
     "test:e2e": "node --loader ts-node/esm.mjs e2e/runner.ts",
     "serve": "serve -s build",
-    "test:macos": "./e2e/run-on-macos.sh",
-    "test:windows": "npx testcafe $npm_config_browser e2e/**/*.spec.{js,ts} --hostname localhost"
+    "test:macos": "./e2e/test_macos.sh",
+    "echo": "echo $BROWSER"
   },
   "eslintConfig": {
     "extends": [
@@ -46,7 +46,9 @@
     ]
   },
   "devDependencies": {
+    "@types/cross-spawn": "^6.0.2",
     "consola": "^2.15.0",
+    "cross-spawn": "^7.0.3",
     "serve": "^11.3.2",
     "testcafe": "^1.10.0",
     "ts-node": "^9.1.1"
