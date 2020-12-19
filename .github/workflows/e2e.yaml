@@ -1,8 +1,6 @@
 name: e2e
-on:
-  pull_request:
-    branches:
-      - main
+on: [pull_request]
+
 jobs:
   setup:
     runs-on: windows-latest
@@ -10,7 +8,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 14
       - name: Cache node_modules
         uses: actions/cache@v1
         with:
@@ -18,23 +16,45 @@ jobs:
           key: e2e-yarn-${{ hashFiles('**\yarn.lock') }}
           restore-keys: e2e-yarn-
       - run: yarn
-  IE11:
+  Windows:
     needs: [setup]
     runs-on: windows-latest
     strategy:
       matrix:
-        browser: [ie]
+        browser: [ie,chrome,firefox]
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 14
       - name: Restore node_modules cache
         uses: actions/cache@v1
         with:
           path: node_modules
           key: e2e-yarn-${{ hashFiles('**\yarn.lock') }}
           restore-keys: e2e-yarn-
+      - run: yarn
+      - name: Run test
+        run: yarn test:e2e
+        env:
+          BROWSER: ${{ matrix.browser }}
+  Mac:
+    needs: [setup]
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        browser: [safari]
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - name: Restore node_modules cache
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: e2e-yarn-${{ hashFiles('**\yarn.lock') }}
+          restore-keys: e2e-yarn
       - run: yarn
       - name: Run test
         run: yarn test:e2e

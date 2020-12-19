@@ -2,6 +2,7 @@
   "name": "github-actions-browser-test-example",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -21,8 +22,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "test:e2e": "node e2e/runner.js",
-    "serve": "serve -s build"
+    "test:e2e": "node --loader ts-node/esm.mjs e2e/runner.ts",
+    "serve": "serve -s build",
+    "test:macos": "./e2e/test_macos.sh",
+    "echo": "echo $BROWSER"
   },
   "eslintConfig": {
     "extends": [
@@ -43,8 +46,11 @@
     ]
   },
   "devDependencies": {
+    "@types/cross-spawn": "^6.0.2",
     "consola": "^2.15.0",
+    "cross-spawn": "^7.0.3",
     "serve": "^11.3.2",
-    "testcafe": "^1.10.0"
+    "testcafe": "^1.10.0",
+    "ts-node": "^9.1.1"
   }
 }
