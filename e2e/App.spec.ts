@@ -12,4 +12,5 @@ fixture('Top page').page('0.0.0.0:5000/').beforeEach(async (t) => await resizeWi
 test('find a link', async (t) => {
   await t
     .expect(Selector('a').withText('Learn React').exists).ok()
+  await t.ok()
 })
