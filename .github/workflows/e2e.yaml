@@ -6,12 +6,12 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 16
       - name: Cache node_modules
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: e2e-yarn-${{ hashFiles('**\yarn.lock') }}
@@ -24,19 +24,21 @@ jobs:
       matrix:
         browser: [safari]
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 16
       - name: Restore node_modules cache
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: e2e-yarn-${{ hashFiles('**\yarn.lock') }}
           restore-keys: e2e-yarn
       - run: yarn
       - name: Install
-        run: npm i -g testcafe
+        run: |
+          ls -la ~/.testcafe-browser-tools
+          npm i -g testcafe
       - name: Run test
         run: yarn test:e2e
         env:
