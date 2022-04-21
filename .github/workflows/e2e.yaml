@@ -11,7 +11,9 @@ jobs:
         with:
           node-version: 14
       - name: Clean
-        run: rm -rf ~/.testcafe-browser-tools
+        run: |
+          tccutil reset ScreenCapture com.devexpress.testcafe-browser-tools
+          tccutil reset AppleEvents com.devexpress.testcafe-browser-tools
       - name: Cache node_modules
         uses: actions/cache@v1
         with:
@@ -38,7 +40,9 @@ jobs:
           restore-keys: e2e-yarn
       - run: yarn
       - name: Clean
-        run: rm -rf ~/.testcafe-browser-tools
+        run: |
+          tccutil reset ScreenCapture com.devexpress.testcafe-browser-tools
+          tccutil reset AppleEvents com.devexpress.testcafe-browser-tools
       - name: Run test
         run: yarn test:e2e
         env:
