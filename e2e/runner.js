@@ -33,6 +33,7 @@ const run = (served) => {
   const e2e = spawn(command);
   e2e.stdout.on("data", (data) => {
     if (data.indexOf("CONNECTED") >= 0) {
+      console.log("remove");
       spawn("rm -rf ~/.testcafe-browser-tools");
     }
     consola.log(`OUT: ${data}`);
@@ -40,11 +41,11 @@ const run = (served) => {
   e2e.stderr.on("data", (data) => {
     consola.error(`ERR: ${data}`);
   });
-  e2e.on("close", () => {
+  e2e.on("close", (data) => {
     served.kill();
-    consola.error(`CLOSE`);
+    consola.log(`CLOSE: ${data}`);
 
-    process.exit(0);
+    process.exit(data);
   });
 };
 
