@@ -28,9 +28,7 @@ const build = () => {
 };
 
 const run = (served) => {
-  const command = process.platform.startsWith("win")
-    ? `npx testcafe ${process.env.BROWSER} e2e/**/*.spec.{js,ts} --hostname localhost`
-    : `yarn test:macos`;
+  const command = `yarn test:macos`;
 
   const e2e = spawn(command);
   e2e.stdout.on("data", (data) => {
