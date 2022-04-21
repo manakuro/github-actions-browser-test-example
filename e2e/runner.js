@@ -10,13 +10,13 @@ const spawn = (command) => {
 const serve = () => {
   const served = spawn("yarn serve");
   served.stdout.on("data", (data) => {
-    consola.log(`${data}`);
+    consola.log(`SERVE_OUT: ${data}`);
   });
   served.stderr.on("data", (data) => {
-    consola.error(`${data}`);
+    consola.error(`SERVE_ERROR: ${data}`);
   });
   served.on("close", (code) => {
-    consola.info(`${code}`);
+    consola.info(`SERVE_CLOSE: ${code}`);
   });
 
   return served;
@@ -34,13 +34,15 @@ const run = (served) => {
 
   const e2e = spawn(command);
   e2e.stdout.on("data", (data) => {
-    consola.log(`${data}`);
+    consola.log(`OUT: ${data}`);
   });
   e2e.stderr.on("data", (data) => {
-    consola.error(`${data}`);
+    consola.error(`ERR: ${data}`);
   });
   e2e.on("close", () => {
     served.kill();
+    consola.error(`CLOSE`);
+
     process.exit(0);
   });
 };
