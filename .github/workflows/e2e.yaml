@@ -1,7 +1,7 @@
 name: e2e
 on:
   pull_request:
-    branches: [main, test]
+    branches: [main]
 jobs:
   setup:
     runs-on: ubuntu-latest
