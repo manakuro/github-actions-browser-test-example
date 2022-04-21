@@ -19,7 +19,7 @@ jobs:
       - run: yarn
   Mac:
     needs: [setup]
-    runs-on: macos-11
+    runs-on: macos-10.15
     strategy:
       matrix:
         browser: [safari]
