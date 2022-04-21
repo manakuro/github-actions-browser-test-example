@@ -1,6 +1,7 @@
 name: e2e
-on: [pull_request]
-
+on:
+  pull_request:
+    branches: [main, test]
 jobs:
   setup:
     runs-on: windows-latest
