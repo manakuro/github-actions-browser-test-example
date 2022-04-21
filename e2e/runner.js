@@ -2,9 +2,9 @@ import * as child_process from "child_process";
 import consola from "consola";
 import crossSpawn from "cross-spawn";
 
-const spawn = (command: string) => {
+const spawn = (command) => {
   const [c, ...args] = command.split(" ");
-  return crossSpawn(c, args) as child_process.ChildProcessWithoutNullStreams;
+  return crossSpawn(c, args);
 };
 
 const serve = () => {
@@ -27,7 +27,7 @@ const build = () => {
   consola.success(`${result}`);
 };
 
-const run = (served: child_process.ChildProcessWithoutNullStreams) => {
+const run = (served) => {
   const command = process.platform.startsWith("win")
     ? `npx testcafe ${process.env.BROWSER} e2e/**/*.spec.{js,ts} --hostname localhost`
     : `yarn test:macos`;
