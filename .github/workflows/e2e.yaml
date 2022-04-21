@@ -37,6 +37,7 @@ jobs:
       - run: yarn
       - name: Install
         run: |
+          npm i -g testcafe
           npm i -g testcafe-browser-tools
       - name: Run test
         run: yarn test:e2e
