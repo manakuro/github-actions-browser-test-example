@@ -10,11 +10,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
-      - name: Clean
-        run: |
-          brew install tccutil
-          tccutil reset ScreenCapture com.devexpress.testcafe-browser-tools
-          tccutil reset AppleEvents com.devexpress.testcafe-browser-tools
       - name: Cache node_modules
         uses: actions/cache@v1
         with:
