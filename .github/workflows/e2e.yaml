@@ -35,10 +35,6 @@ jobs:
           key: e2e-yarn-${{ hashFiles('**\yarn.lock') }}
           restore-keys: e2e-yarn
       - run: yarn
-      - name: Install
-        run: |
-          npm i -g testcafe
-          npm i -g testcafe-browser-tools
       - name: Run test
         run: yarn test:e2e
         env:
