@@ -8,7 +8,7 @@ const spawn = (command: string) => {
 };
 
 const serve = () => {
-  const served = spawn("yarn start");
+  const served = spawn("yarn serve");
   served.stdout.on("data", (data) => {
     consola.log(`${data}`);
   });
@@ -45,6 +45,6 @@ const run = (served: child_process.ChildProcessWithoutNullStreams) => {
   });
 };
 
-// build();
+build();
 const served = serve();
 run(served);
