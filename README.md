@@ -1,4 +1,3 @@
-# Cross-browser testing on GitHub Actions with TestCafe example test
 
 ## Available Scripts
 
