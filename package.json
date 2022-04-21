@@ -23,7 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "test:e2e": "node --loader ts-node/esm.mjs e2e/runner.ts",
-    "serve": "serve -s build",
+    "serve": "serve -s build -p 5000",
     "test:macos": "./e2e/test_macos.sh",
     "echo": "echo $BROWSER"
   },

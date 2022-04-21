@@ -7,7 +7,7 @@ const resizeWindow = async (t: TestController) => {
 };
 
 fixture("Top page")
-  .page("0.0.0.0:3000/")
+  .page("0.0.0.0:5000/")
   .beforeEach(async (t) => await resizeWindow(t));
 
 test("find a link", async (t) => {
