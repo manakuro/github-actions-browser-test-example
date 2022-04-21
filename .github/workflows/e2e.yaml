@@ -35,10 +35,8 @@ jobs:
           key: e2e-yarn-${{ hashFiles('**\yarn.lock') }}
           restore-keys: e2e-yarn
       - run: yarn
-      - name: Clean
-        run: |
-          tccutil reset ScreenCapture com.devexpress.testcafe-browser-tools
-          tccutil reset AppleEvents com.devexpress.testcafe-browser-tools
+      - name: Install
+        run: npm i -g testcafe
       - name: Run test
         run: yarn test:e2e
         env:
