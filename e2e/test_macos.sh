@@ -6,11 +6,13 @@ pid=$!
 sleep 5
 open -a Safari http://${HOSTNAME}:${PORT1}/browser/connect
 wait $pid
-stat=$?
+status=$?
 
-if [ $stat –eq 0 ]
+if [ $status -eq 0 ]
 then
-       echo "Exit status - $stat"
+       echo "Success: $status"
+       exit 0
 else
-        echo "Exit status - $stat"
+        echo "Failed: $status"
+        exit 1
 fi
