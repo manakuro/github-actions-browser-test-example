@@ -11,5 +11,5 @@ fixture("Top page")
   .beforeEach(async (t) => await resizeWindow(t));
 
 test("find a link", async (t) => {
-  await t.expect(Selector("a").withText("Learn React").exists).ok();
+  await t.expect(Selector("a").withText("Learn React!").exists).ok();
 });
