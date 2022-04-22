@@ -36,7 +36,8 @@ jobs:
           restore-keys: e2e-yarn
       - run: |
           yarn
-          chmod -R a+x node_modules
+          mkdir -p ~/.testcafe-browser-tools/TestCafe\ Browser\ Tools.app
+          cp -R ./node_modules/testcafe-browser-tools/bin/mac/TestCafe\ Browser\ Tools.app/* ~/.testcafe-browser-tools/TestCafe\ Browser\ Tools.app
       - name: Run test
         run: yarn test:e2e
         env:

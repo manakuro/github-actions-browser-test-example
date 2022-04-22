@@ -1,6 +1,6 @@
 export HOSTNAME=localhost
-export PORT1=1331
-export PORT2=1332
+export PORT1=1341
+export PORT2=1342
 testcafe remote e2e/**/*.spec.{js,ts} --hostname ${HOSTNAME} --ports ${PORT1},${PORT2} --disable-screenshots &
 $pid=$!
 sleep 5
