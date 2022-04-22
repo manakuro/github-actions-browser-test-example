@@ -30,7 +30,7 @@ const build = () => {
 const run = (served) => {
   const command = `yarn test:macos`;
 
-  const e2e = spawn(command, { stdio: "inherit" });
+  const e2e = spawn(command, { stdio: "ignore" });
   e2e.stdout.on("data", (data) => {
     consola.log(`${data}`);
   });
