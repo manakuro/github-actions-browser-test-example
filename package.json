@@ -20,7 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "testcafe safari e2e/**/*.spec.{js,ts}  --disable-screenshots",
+    "test": "testcafe remote e2e/**/*.spec.{js,ts} --hostname localhost --ports 1337,1338 --skip-js-errors",
     "eject": "react-scripts eject",
     "test:e2e": "node e2e/runner.js",
     "serve": "serve -s build -p 5000",
