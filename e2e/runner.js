@@ -1,8 +1,14 @@
 import * as child_process from "child_process";
 import consola from "consola";
+import crossSpawn from "cross-spawn";
+
+const spawn = (command, options) => {
+  const [c, ...args] = command.split(" ");
+  return crossSpawn(c, args, options);
+};
 
 const serve = () => {
-  const served = child_process.spawn("yarn serve");
+  const served = spawn("yarn serve");
   served.stdout.on("data", (data) => {
     consola.log(`${data}`);
   });
@@ -24,13 +30,14 @@ const build = () => {
 const run = (served) => {
   const command = `yarn test:macos`;
 
-  const e2e = child_process.spawn(command);
+  const e2e = spawn(command, { stdio: "inherit" });
   e2e.stdout.on("data", (data) => {
     consola.log(`${data}`);
   });
   e2e.stderr.on("data", (data) => {
     consola.error(`${data}`);
   });
+
   e2e.on("close", (data) => {
     served.kill();
     consola.log(`CLOSE: ${data}`);
