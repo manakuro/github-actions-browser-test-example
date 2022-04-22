@@ -40,7 +40,7 @@ const run = (served) => {
   e2e.on("close", (data) => {
     served.kill();
     consola.log(`CLOSE: ${data}`);
-    process.exit(0);
+    process.exit(1);
   });
 };
 
