@@ -37,10 +37,13 @@ const run = (served) => {
   e2e.stderr.on("data", (data) => {
     consola.error(`${data}`);
   });
+  e2e.on("exit", (data) => {
+    consola.log(`EXIT: ${data}`);
+  });
   e2e.on("close", (data) => {
     served.kill();
     consola.log(`CLOSE: ${data}`);
-    process.exit(1);
+    process.exit(data);
   });
 };
 
