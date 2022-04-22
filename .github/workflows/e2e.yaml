@@ -38,6 +38,8 @@ jobs:
           yarn
           chmod -R a+x node_modules
       - name: Run test
-        run: yarn test:e2e
+        run: |
+          yarn test
+          yarn test:e2e
         env:
           BROWSER: ${{ matrix.browser }}
